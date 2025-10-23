@@ -1,70 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Portafolio</title>
-  <style>
-    body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background-color: #f5f5f5;
-}
-
-header {
-  background-color: #333;
-  color: white;
-  padding: 15px;
-  text-align: center;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-nav ul li {
-  display: inline;
-  margin: 0 10px;
-}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Inteligencia Artificial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .imagen-principal {
+            display: block;
+            margin: 20px auto;
+            width: 70%;
+            border-radius: 10px;
+        }
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #1e3a8a;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #e5e7eb;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        a {
+            text-decoration: none;
+            color: #1e3a8a;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Mi Portafolio</h1>
-    <nav>
-      <ul>
-        <li><a href="#about">Acerca de mí</a></li>
-        <li><a href="#projects">Proyectos</a></li>
-        <li><a href="#contact">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header>
+        <h1>Portafolio de Inteligencia Artificial</h1>
+        <p>Repositorio de tareas, proyectos y avances</p>
+    </header>
 
-  <section id="about">
-    <h2>Acerca de mí</h2>
-    <p>Hola, soy [Tu Nombre], estudiante de [tu área]. Me apasiona crear proyectos web y aprender nuevas tecnologías.</p>
-  </section>
+    <img src="https://cdn.pixabay.com/photo/2023/03/15/10/49/artificial-intelligence-7853481_1280.jpg" alt="Imagen de inteligencia artificial" class="imagen-principal">
 
-  <section id="projects">
-    <h2>Proyectos</h2>
-    <div class="project">
-      <h3>Proyecto 1</h3>
-      <p>Descripción breve del proyecto 1.</p>
-    </div>
-    <div class="project">
-      <h3>Proyecto 2</h3>
-      <p>Descripción breve del proyecto 2.</p>
-    </div>
-  </section>
+    <main>
+        <section>
+            <h2>Sobre este portafolio</h2>
+            <p>En este espacio se irán subiendo las tareas asignadas por el profesor, con sus respectivas correcciones y actualizaciones. Cada enlace llevará al archivo o al proyecto correspondiente.</p>
+        </section>
 
-  <section id="contact">
-    <h2>Contacto</h2>
-    <p>Puedes escribirme a <a href="mailto:tuemail@ejemplo.com">tuemail@ejemplo.com</a></p>
-  </section>
+        <section>
+            <h2>Tareas publicadas</h2>
+            <ul>
+                <li><a href="#">Tarea 1: Introducción a la IA</a></li>
+                <li><a href="#">Tarea 2: Algoritmos de aprendizaje automático</a></li>
+                <li><a href="#">Tarea 3: Redes neuronales</a></li>
+            </ul>
+        </section>
 
-  <footer>
-    <p>© 2025 Mi Portafolio</p>
-  </footer>
+        <section>
+            <h2>Próximas actividades</h2>
+            <p>Las siguientes tareas se añadirán a medida que sean entregadas y revisadas por el profesor.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Portafolio de IA - Desarrollado para uso académico</p>
+    </footer>
 </body>
 </html>
