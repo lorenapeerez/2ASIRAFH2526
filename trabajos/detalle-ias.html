@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalle de cada IA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main">
+    <h1>Detalle de cada IA</h1>
+
+    <div class="card ia">
+      <h2>IA 1 – Google Gemma 3 4B</h2>
+      <p>Precisión: 100% aciertos, 0 fallos.</p>
+      <p>Ventaja principal: muy rápida y práctica para ver respuestas al instante.</p>
+      <button class="btn" onclick="toggle('ia1')">Ver más datos</button>
+      <div id="ia1" class="extra extra-hidden">
+        <ul>
+          <li>Windows: 95.01 tok/s, 0.46 s primer token, 900 tokens, 11.28 s, 87% GPU.</li>
+          <li>Mac: 35.53 tok/s, 3.69 s primer token, 672 tokens, 18.28 s, 77% GPU.</li>
+          <li>Ideal cuando te importa sobre todo la velocidad.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card ia">
+      <h2>IA 2 – Qwen/qwen3-vl-4b</h2>
+      <p>Precisión: 100% aciertos, 0 fallos.</p>
+      <p>Ventaja principal: explicaciones paso a paso, buena para estudiar.</p>
+      <button class="btn" onclick="toggle('ia2')">Ver más datos</button>
+      <div id="ia2" class="extra extra-hidden">
+        <ul>
+          <li>Windows: 36.78 tok/s, 0.13 s primer token, 756 tokens, 19.7 s, 68% GPU.</li>
+          <li>Mac: 33.26 tok/s, 6.88 s primer token, 747 tokens, 13.25 s, 12.5% GPU.</li>
+          <li>Ideal para aprendizaje guiado y práctica de problemas.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card ia">
+      <h2>IA 3 – Qwen3-4b-thinking-2507</h2>
+      <p>Precisión: 100% aciertos, 0 fallos.</p>
+      <p>Ventaja principal: mejor equilibrio entre claridad, razonamiento y naturalidad.</p>
+      <button class="btn" onclick="toggle('ia3')">Ver más datos</button>
+      <div id="ia3" class="extra extra-hidden">
+        <ul>
+          <li>Windows: 112.78 tok/s, 0.2 s primer token, 2144 tokens, 8.37 s, 92% GPU.</li>
+          <li>Mac: 32.88 tok/s, 0.2 s primer token, 1488 tokens, 5.18 s, 87% GPU.</li>
+          <li>Buena opción “generalista” para combinar velocidad y explicaciones claras.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="links">
+      <a href="index.html">Volver al resumen</a> |
+      <a href="graficos.html">Ver gráficos</a>
+    </div>
+  </div>
+
+  <script>
+    function toggle(id) {
+      const div = document.getElementById(id);
+      if (div.classList.contains('extra-hidden')) {
+        div.classList.remove('extra-hidden');
+        div.classList.add('extra-visible');
+      } else {
+        div.classList.remove('extra-visible');
+        div.classList.add('extra-hidden');
+      }
+    }
+  </script>
+</body>
+</html>

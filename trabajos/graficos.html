@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gráficos Windows vs Mac</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main">
+    <h1>Gráficos: Windows vs Mac</h1>
+
+    <!-- Gráfico de barras horizontales tok/sec -->
+    <div class="card">
+      <h2>Gráfico de barras – tok/sec</h2>
+      <p>Comparación de velocidad (tokens por segundo) entre Windows y Mac para cada modelo.</p>
+      <div id="charts"></div>
+    </div>
+
+    <!-- Gráficos circulares Windows y Mac -->
+    <div class="card">
+      <h2>Gráficos circulares – reparto de velocidad</h2>
+      <p>
+        Cada gráfico muestra cómo se reparte la velocidad (tok/sec) entre los modelos en ese sistema operativo.
+      </p>
+
+      <div class="pie-wrapper">
+        <!-- Windows -->
+        <div style="text-align:center;">
+          <h3>Windows</h3>
+          <div class="pie-chart" id="pieChartWin"></div>
+        </div>
+
+        <!-- Mac -->
+        <div style="text-align:center;">
+          <h3>Mac</h3>
+          <div class="pie-chart" id="pieChartMac"></div>
+        </div>
+
+        <ul class="pie-legend">
+          <li><span class="legend-box gemma"></span> Gemma 3 4B</li>
+          <li><span class="legend-box qwen-vl"></span> Qwen3-vl-4b</li>
+          <li><span class="legend-box qwen-think"></span> Qwen3-4b-thinking-2507</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Barras verticales -->
+    <div class="card">
+      <h2>Barras verticales – tiempos y tokens</h2>
+      <p>
+        Para cada IA se muestran tres barras por sistema: tiempo total (s), tiempo al primer token (s) y cantidad de tokens.
+      </p>
+
+      <div class="v-bar-group">
+        <!-- Eje Y -->
+        <div class="v-y-axis">
+          <div class="v-y-label" id="yMaxTokens"></div>
+          <div class="v-y-label-mid"></div>
+          <div class="v-y-label">0</div>
+          <span class="v-y-title">Valor</span>
+        </div>
+
+        <!-- Gráfico -->
+        <div class="v-chart" id="vChart"></div>
+      </div>
+
+      <!-- Etiquetas eje X -->
+      <div class="v-x-axis">
+        <div class="v-x-item"><strong>Total</strong><span>(s)</span></div>
+        <div class="v-x-item"><strong>First</strong><span>(s)</span></div>
+        <div class="v-x-item"><strong>Tokens</strong><span></span></div>
+      </div>
+
+      <div class="v-legend">
+        <div><span class="v-legend-box total"></span> Tiempo total</div>
+        <div><span class="v-legend-box first"></span> Primer token</div>
+        <div><span class="v-legend-box tokens"></span> Tokens</div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Resumen: ¿Windows o Mac en cada IA?</h2>
+      <p>
+        Comparativa rápida del sistema que funciona mejor según tus medidas de velocidad y tiempo.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Modelo</th>
+            <th>Mejor sistema</th>
+            <th>Motivo principal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Gemma 3 4B</td>
+            <td>Windows</td>
+            <td>Más del doble de tok/sec y menor tiempo total que en Mac.</td>
+          </tr>
+          <tr>
+            <td>Qwen3-vl-4b</td>
+            <td>Depende</td>
+            <td>Windows tiene más tok/sec y mejor primer token; Mac tiene menor tiempo total.</td>
+          </tr>
+          <tr>
+            <td>Qwen3-4b-thinking-2507</td>
+            <td>Windows</td>
+            <td>Muchos más tok/sec y más potencia; Mac genera menos tokens y termina antes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="links">
+      <a href="index.html">Volver al resumen</a> |
+      <a href="detalle-ias.html">Ver detalle por IA</a>
+    </div>
+  </div>
+
+  <script>
+    // ==== Datos base ====
+    const modelos = [
+      {
+        nombre: 'Gemma 3 4B',
+        windows: { tokSec: 95.01, first: 0.46, tokens: 900, total: 11.28 },
+        mac:     { tokSec: 35.53, first: 3.69, tokens: 672, total: 18.28 }
+      },
+      {
+        nombre: 'Qwen3-vl-4b',
+        windows: { tokSec: 36.78, first: 0.13, tokens: 756, total: 19.70 },
+        mac:     { tokSec: 33.26, first: 6.88, tokens: 747, total: 13.25 }
+      },
+      {
+        nombre: 'Qwen3-thinking-2507',
+        windows: { tokSec: 112.78, first: 0.20, tokens: 2144, total: 8.37 },
+        mac:     { tokSec: 32.88, first: 0.20, tokens: 1488, total: 5.18 }
+      }
+    ];
+
+    // ==== Barras horizontales tok/sec ====
+    const maxTokSec = Math.max(...modelos.flatMap(m => [m.windows.tokSec, m.mac.tokSec]));
+    const chartsDiv = document.getElementById('charts');
+
+    modelos.forEach(m => {
+      const group = document.createElement('div');
+      group.className = 'chart-group';
+
+      const title = document.createElement('div');
+      title.className = 'chart-title';
+      title.textContent = m.nombre;
+      group.appendChild(title);
+
+      const container = document.createElement('div');
+      container.className = 'bar-container';
+
+      const barWin = document.createElement('div');
+      barWin.className = 'bar windows';
+      barWin.style.width = (m.windows.tokSec / maxTokSec * 100) + '%';
+      barWin.textContent = `Windows: ${m.windows.tokSec.toFixed(2)} tok/s`;
+
+      const barMac = document.createElement('div');
+      barMac.className = 'bar mac';
+      barMac.style.width = (m.mac.tokSec / maxTokSec * 100) + '%';
+      barMac.textContent = `Mac: ${m.mac.tokSec.toFixed(2)} tok/s`;
+
+      container.appendChild(barWin);
+      container.appendChild(barMac);
+      group.appendChild(container);
+
+      chartsDiv.appendChild(group);
+    });
+
+    // ==== Pie chart Windows (tok/sec) ====
+    const gemmaWin = modelos[0].windows.tokSec;
+    const qwenVlWin = modelos[1].windows.tokSec;
+    const qwenThinkWin = modelos[2].windows.tokSec;
+    const totalWin = gemmaWin + qwenVlWin + qwenThinkWin;
+
+    const pGemmaWin = gemmaWin / totalWin * 100;
+    const pQwenVlWin = qwenVlWin / totalWin * 100;
+    const pQwenThinkWin = qwenThinkWin / totalWin * 100;
+
+    const pieWin = document.getElementById('pieChartWin');
+    pieWin.style.background = `
+      conic-gradient(
+        #22c55e 0 ${pGemmaWin}%,
+        #38bdf8 ${pGemmaWin}% ${pGemmaWin + pQwenVlWin}%,
+        #a855f7 ${pGemmaWin + pQwenVlWin}% 100%
+      )
+    `;
+
+    // ==== Pie chart Mac (tok/sec) ====
+    const gemmaMac = modelos[0].mac.tokSec;
+    const qwenVlMac = modelos[1].mac.tokSec;
+    const qwenThinkMac = modelos[2].mac.tokSec;
+    const totalMac = gemmaMac + qwenVlMac + qwenThinkMac;
+
+    const pGemmaMac = gemmaMac / totalMac * 100;
+    const pQwenVlMac = qwenVlMac / totalMac * 100;
+    const pQwenThinkMac = qwenThinkMac / totalMac * 100;
+
+    const pieMac = document.getElementById('pieChartMac');
+    pieMac.style.background = `
+      conic-gradient(
+        #22c55e 0 ${pGemmaMac}%,
+        #38bdf8 ${pGemmaMac}% ${pGemmaMac + pQwenVlMac}%,
+        #a855f7 ${pGemmaMac + pQwenVlMac}% 100%
+      )
+    `;
+
+    // ==== Barras verticales: tiempo total, primer token, tokens ====
+    const maxTotal = Math.max(...modelos.flatMap(m => [m.windows.total, m.mac.total]));
+    const maxFirst = Math.max(...modelos.flatMap(m => [m.windows.first, m.mac.first]));
+    const maxTokens = Math.max(...modelos.flatMap(m => [m.windows.tokens, m.mac.tokens]));
+
+    document.getElementById('yMaxTokens').textContent = maxTokens;
+
+    const vChart = document.getElementById('vChart');
+
+    modelos.forEach(m => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'v-column-group';
+
+      const title = document.createElement('div');
+      title.className = 'v-col-title';
+      title.textContent = m.nombre;
+      wrapper.appendChild(title);
+
+      const sysWrapper = document.createElement('div');
+      sysWrapper.className = 'v-systems';
+
+      ['windows', 'mac'].forEach(sys => {
+        const data = m[sys];
+        const box = document.createElement('div');
+        box.className = 'v-system';
+
+        const sysLabel = document.createElement('div');
+        sysLabel.className = 'v-system-label';
+        sysLabel.textContent = sys === 'windows' ? 'Win' : 'Mac';
+        box.appendChild(sysLabel);
+
+        const bars = document.createElement('div');
+        bars.className = 'v-bars';
+
+        const bTotal = document.createElement('div');
+        bTotal.className = 'v-bar v-total';
+        bTotal.style.height = (data.total / maxTotal * 100) + '%';
+        bTotal.title = `Total: ${data.total}s`;
+
+        const bFirst = document.createElement('div');
+        bFirst.className = 'v-bar v-first';
+        bFirst.style.height = (data.first / maxFirst * 100) + '%';
+        bFirst.title = `Primer token: ${data.first}s`;
+
+        const bTokens = document.createElement('div');
+        bTokens.className = 'v-bar v-tokens';
+        bTokens.style.height = (data.tokens / maxTokens * 100) + '%';
+        bTokens.title = `Tokens: ${data.tokens}`;
+
+        bars.appendChild(bTotal);
+        bars.appendChild(bFirst);
+        bars.appendChild(bTokens);
+        box.appendChild(bars);
+        sysWrapper.appendChild(box);
+      });
+
+      wrapper.appendChild(sysWrapper);
+      vChart.appendChild(wrapper);
+    });
+  </script>
+</body>
+</html>
