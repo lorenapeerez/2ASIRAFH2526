@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Comparativa de IAs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main">
+    <h1>Comparativa de IAs</h1>
+
+    <div class="card">
+      <p>
+        Todas las IAs tuvieron <strong>100% de aciertos</strong> en los acertijos (0 fallos).  
+        La diferencia entre ellas está en la <span class="mejor">velocidad</span> y el 
+        <span class="mejor">estilo de explicación</span>.
+      </p>
+    </div>
+
+    <div class="card table-wrapper">
+      <h2>Datos de rendimiento</h2>
+      <table>
+        <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Sistema</th>
+          <th>tok/sec</th>
+          <th>Primer token (s)</th>
+          <th>Tokens</th>
+          <th>Tiempo total (s)</th>
+          <th>% GPU</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Gemma -->
+        <tr>
+          <td>Google - Gemma 3 4B</td>
+          <td>Windows</td>
+          <td>95.01</td>
+          <td>0.46</td>
+          <td>900</td>
+          <td>11.28</td>
+          <td>87</td>
+        </tr>
+        <tr>
+          <td>Google - Gemma 3 4B</td>
+          <td>Mac</td>
+          <td>35.53</td>
+          <td>3.69</td>
+          <td>672</td>
+          <td>18.28</td>
+          <td>77</td>
+        </tr>
+        <!-- Qwen vl -->
+        <tr>
+          <td>Qwen/qwen3-vl-4b</td>
+          <td>Windows</td>
+          <td>36.78</td>
+          <td>0.13</td>
+          <td>756</td>
+          <td>19.70</td>
+          <td>68</td>
+        </tr>
+        <tr>
+          <td>Qwen/qwen3-vl-4b</td>
+          <td>Mac</td>
+          <td>33.26</td>
+          <td>6.88</td>
+          <td>747</td>
+          <td>13.25</td>
+          <td>12.5</td>
+        </tr>
+        <!-- Qwen thinking -->
+        <tr>
+          <td>Qwen3-4b-thinking-2507</td>
+          <td>Windows</td>
+          <td>112.78</td>
+          <td>0.20</td>
+          <td>2144</td>
+          <td>8.37</td>
+          <td>92</td>
+        </tr>
+        <tr>
+          <td>Qwen3-4b-thinking-2507</td>
+          <td>Mac</td>
+          <td>32.88</td>
+          <td>0.20</td>
+          <td>1488</td>
+          <td>5.18</td>
+          <td>87</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h2>¿Qué IA usar?</h2>
+      <ul>
+        <li><strong>IA 1 – Gemma 3 4B:</strong> mejor para <span class="mejor">velocidad y verificación rápida</span>.</li>
+        <li><strong>IA 2 – Qwen/qwen3-vl-4b:</strong> mejor para <span class="mejor">aprendizaje paso a paso</span>.</li>
+        <li><strong>IA 3 – Qwen3-4b-thinking-2507:</strong> mejor <span class="mejor">equilibrio general</span> entre claridad y naturalidad.</li>
+      </ul>
+
+      <div style="margin-top:10px;">
+        <button class="btn" onclick="mostrarRecomendacion('velocidad')">Quiero velocidad</button>
+        <button class="btn" onclick="mostrarRecomendacion('pedagogia')">Quiero aprender</button>
+        <button class="btn" onclick="mostrarRecomendacion('equilibrio')">Quiero equilibrio</button>
+      </div>
+
+      <p id="recomendacion" class="mejor" style="margin-top:10px;"></p>
+    </div>
+
+    <div class="links">
+      <a href="graficos.html">Ver gráficos (barras y circular)</a> |
+      <a href="detalle-ias.html">Ver detalle por IA</a>
+    </div>
+  </div>
+
+  <script>
+    function mostrarRecomendacion(tipo) {
+      const p = document.getElementById('recomendacion');
+      if (tipo === 'velocidad') {
+        p.textContent = 'Recomendación: Google - Gemma 3 4B (IA 1) para máxima velocidad.';
+      } else if (tipo === 'pedagogia') {
+        p.textContent = 'Recomendación: Qwen/qwen3-vl-4b (IA 2) para explicaciones paso a paso.';
+      } else {
+        p.textContent = 'Recomendación: Qwen3-4b-thinking-2507 (IA 3) para un buen equilibrio entre rapidez y claridad.';
+      }
+    }
+  </script>
+</body>
+</html>
+
