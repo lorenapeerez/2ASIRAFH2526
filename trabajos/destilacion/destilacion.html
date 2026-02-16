@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorena Pérez - Análisis Destilación IA</title>
+    <style>
+        body{font-family:'Times New Roman',serif;background:#f9f9f9;color:#333;line-height:1.7;max-width:850px;margin:0 auto;padding:40px}
+        header{background:#4a90e2;color:white;padding:30px;text-align:center;border-radius:10px;margin-bottom:30px}
+        .autor-info{text-align:center;margin:30px 0;padding:20px;background:#e8f4fd;border-radius:8px}
+        .tabla-resultados{width:100%;border-collapse:collapse;margin:25px 0}
+        th,td{padding:15px;border:1px solid #ddd;text-align:left}
+        th{background:#4a90e2;color:white}
+        .destacado{background:#d4edda;color:#155724;padding:8px;border-radius:5px;font-weight:bold}
+        section{margin:30px 0;padding:25px;background:white;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.05)}
+        .img-container{text-align:center;margin:25px 0}
+        .img-container img{max-width:100%;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.15)}
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📈 Análisis Técnico Destilación</h1>
+        <h2>Trabajo Práctico IA - Febrero 2026</h2>
+    </header>
+
+    <div class="autor-info">
+        <h3>Lorena Pérez Martínez</h3>
+        <p><em>Especialista en Procesamiento de Datos y Modelos</em></p>
+    </div>
+
+    <!-- Imagen 1: resultados finales en consola -->
+    <div class="img-container">
+        <img src="Captura-de-pantalla-2026-02-13-165059.jpg" alt="Resultados de destilación en PowerShell">
+    </div>
+
+    <section>
+        <h2>🔬 Metodología Aplicada</h2>
+        <p>Implementé destilación de conocimiento entre <strong>DistilBERT</strong> (profesor, 67M parámetros) y <strong>BERT-tiny</strong> (estudiante, 4.4M parámetros) usando dataset SST-2.</p>
+        <p>La loss combinada fue: <code>0.3·CE + 0.7·KL(student||teacher)</code> con temperatura T=3.0.</p>
+    </section>
+
+    <!-- Imagen 2: tabla comparativa con error de formato -->
+    <div class="img-container">
+        <img src="Captura-de-pantalla-2026-02-13-164107.jpg" alt="Tabla comparativa y error de formato en PowerShell">
+    </div>
+
+    <section>
+        <h2>📊 Resultados Cuantitativos</h2>
+        <table class="tabla-resultados">
+            <tr><th>Métrica</th><th>Valor Obtenido</th><th>Interpretación</th></tr>
+            <tr><td>Compresión</td><td><span class="destacado">15.2x</span></td><td>Excelente reducción</td></tr>
+            <tr><td>Accuracy</td><td><span class="destacado">75.0%</span></td><td>81.5% capacidad profesor</td></tr>
+            <tr><td>KL Divergence</td><td><span class="destacado">0.3942</span></td><td>Imitación superior</td></tr>
+        </table>
+    </section>
+
+    <section style="background:#e8f4fd">
+        <h2>💭 Mi Conclusión</h2>
+        <p>Los resultados superan expectativas para entrenamiento CPU. El KL bajo (0.3942) confirma transferencia efectiva de conocimiento.</p>
+    </section>
+</body>
+</html>
