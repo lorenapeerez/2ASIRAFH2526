@@ -1,1 +1,69 @@
-....
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lorena Pérez - Tarea Agente IA Local 2026</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        h1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; text-align: center; }
+        h2 { color: #2c3e50; border-left: 5px solid #3498db; padding-left: 15px; }
+        .paso { background: #f8f9fa; padding: 20px; margin: 15px 0; border-radius: 10px; border-left: 5px solid #27ae60; }
+        code { background: #2d3748; color: #a0aec0; padding: 5px 10px; border-radius: 5px; font-family: 'Courier New', monospace; }
+        .hardware { background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 10px 0; }
+        footer { text-align: center; margin-top: 40px; padding: 20px; background: #ecf0f1; border-radius: 10px; }
+        .img-container { text-align: center; margin: 20px 0; }
+        .img-container img { max-width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+    </style>
+</head>
+<body>
+    <h1>📱 Configuración Agente IA Local - Lorena Pérez</h1>
+    
+    <div class="hardware">
+        <h3>Mi Hardware (Intel i5-1035G4 + 12GB RAM)</h3>
+        <p><strong>✅ Perfecto para modelos 7B cuantizados</strong> (GPU Iris Plus 4/32 capas)</p>
+    </div>
+
+    <!-- Imagen 1: servidor LM Studio -->
+    <div class="img-container">
+        <img src="Captura-de-pantalla-2026-02-13-163821.jpg" alt="Servidor LM Studio en ejecución">
+    </div>
+
+    <h2>📥 Paso 1: Descarga LM Studio</h2>
+    <div class="paso">
+        <strong>lmstudio.ai</strong> → Windows → Instalar<br>
+        <code>Abrir → Discover → Qwen2.5-Coder-7B-Instruct (Q4_K_M)</code>
+    </div>
+
+    <h2>⚙️ Paso 2: Configurar Servidor (Mi configuración personal)</h2>
+    <div class="paso">
+        <ol>
+            <li><code>Developer Tab → Load Model → GPU Offload: 4</code></li>
+            <li><code>⚙️ Settings → ☑️ Enable CORS + ☑️ Local Network</code></li>
+            <li><code>🟢 START Server → Puerto 1234 ✓</code></li>
+        </ol>
+    </div>
+
+    <!-- Imagen 2: uso de GPU escribiendo cuento -->
+    <div class="img-container">
+        <img src="Captura-de-pantalla-2026-02-12-132904.jpg" alt="Uso de GPU generando texto con el modelo local">
+    </div>
+
+    <h2>🖥️ Paso 3: Instalar OpenCode (PowerShell Admin)</h2>
+    <div class="paso">
+        <pre><code>winget install OpenJS.NodeJS.LTS
+choco install opencode -y
+opencode</code></pre>
+    </div>
+
+    <h2>🔗 Paso 4: Conexión Final</h2>
+    <div class="paso">
+        <code>En OpenCode: :provider openai http://127.0.0.1:1234/v1 lm-studio</code>
+        <p><strong>¡Ya funciona mi IA local!</strong></p>
+    </div>
+
+    <footer>
+        <p>Trabajo realizado por Lorena Pérez - 2026</p>
+    </footer>
+</body>
+</html>
